@@ -1,0 +1,134 @@
+import java.io.*;
+import java.util.*;
+
+public class Solution 
+{
+    public static void merge(String[] arr, int low, int mid, int high) 
+    {
+        int leftArrSize = mid - low + 1;
+        int rightArrSize = high - mid;
+
+        String[] leftArr = new String[leftArrSize];
+        String[] rightArr = new String[rightArrSize];
+
+        for (int i = 0; i < leftArrSize; i++) 
+        {
+            leftArr[i] = arr[low + i];
+        }
+
+        for (int i = 0; i < rightArrSize; i++) 
+        {   
+            rightArr[i] = arr[mid + 1 + i];
+        }
+
+        int leftArrIndex = 0;
+        int rightArrIndex = 0; 
+        int mergedArrIndex = low;
+
+        while (leftArrIndex < leftArrSize && rightArrIndex < rightArrSize) 
+        {
+            if (Integer.parseInt(leftArr[leftArrIndex].split(" ",3)[2]) >= Integer.parseInt(rightArr[rightArrIndex].split(" ",3)[2])) //comparing the years if left >= right then enter another if
+            {
+                if((Integer.parseInt(leftArr[leftArrIndex].split(" ",3)[2])) == (Integer.parseInt(rightArr[rightArrIndex].split(" ",3)[2]))) //if the years are equal continue in the if
+                {
+                      
+                    if((leftArr[leftArrIndex].split(" ",3)[0]).compareToIgnoreCase(rightArr[rightArrIndex].split(" ",3)[0])<0) //comparing the first names if left<right will give negitive number
+                    {
+                        arr[mergedArrIndex] = leftArr[leftArrIndex];// first name left<right put left string in merged array
+                        mergedArrIndex++;
+                        leftArrIndex++;
+                    }
+                    else if((leftArr[leftArrIndex].split(" ",3)[0]).compareToIgnoreCase(rightArr[rightArrIndex].split(" ",3)[0])>0)//comparing the first names if left>right will give positive number
+                    {
+                        arr[mergedArrIndex] = rightArr[rightArrIndex];//first name left>right put right string in merged array
+                        mergedArrIndex++;
+                        rightArrIndex++;
+                    }
+                    else
+                    {
+                        if((leftArr[leftArrIndex].split(" ",3)[1]).compareToIgnoreCase(rightArr[rightArrIndex].split(" ",3)[1])<0)//comparing the last names if left<right will give negitive number
+                        {
+                            arr[mergedArrIndex] = rightArr[rightArrIndex];
+                            mergedArrIndex++;
+                            rightArrIndex++;
+                        }
+                        else
+                        {
+                            arr[mergedArrIndex] = leftArr[leftArrIndex];
+                            mergedArrIndex++;
+                            leftArrIndex++;
+                        }
+                    }
+                }
+                else
+                {
+                    arr[mergedArrIndex] = rightArr[rightArrIndex]; //else if year left>right put right string in merged array 
+                    mergedArrIndex++;
+                    rightArrIndex++;
+                }
+            } 
+            else 
+            {
+                arr[mergedArrIndex] = leftArr[leftArrIndex]; //else if year left<right put left string in merged array 
+                mergedArrIndex++;
+                leftArrIndex++;
+            }
+        }
+        while (leftArrIndex < leftArrSize) 
+        {
+            arr[mergedArrIndex] = leftArr[leftArrIndex];
+            mergedArrIndex++;
+            leftArrIndex++;
+        }
+        while (rightArrIndex < rightArrSize) 
+        {
+            arr[mergedArrIndex] = rightArr[rightArrIndex];
+            mergedArrIndex++;
+            rightArrIndex++;
+        }
+    for(int p=0;p<arr.length;p++) //printing each iteration
+    {
+        System.out.println(arr[p]);
+    }
+    System.out.println();
+  }
+
+  public static void mergeSort(String[] arr, int low, int high) 
+  {
+    if (high <= low) 
+    {
+      return;
+    }
+
+    int midpoint = low + (high - low) / 2;
+      
+    mergeSort(arr, low, midpoint);//use left side of the original array 
+      
+    mergeSort(arr, midpoint + 1, high);//use right side of the original array 
+      
+    merge(arr, low, midpoint, high); //call to merge function
+  }
+
+    public static void main(String[] args) 
+    {
+        /* Enter your code here. Read input from STDIN. Print output to STDOUT. Your class should be named Solution. */
+        Scanner in = new Scanner(System.in);
+        String numberOf = in.nextLine();
+        int idx=0;
+        int number=Integer.parseInt(numberOf);
+        String[] arr = new String[number]; //array of numbers from input
+        while (idx<number)
+        {
+            String students = in.nextLine();
+            //System.out.println(students);
+            arr[idx]=students;
+            idx++;
+        }
+        if(arr.length==1)
+        {
+            System.out.println(arr[0]);
+        }
+        Solution Grad = new Solution(); 
+        Grad.mergeSort(arr,0,arr.length-1); //go to function with index 0 as low and arr.length-1 as index for high
+    }
+}
