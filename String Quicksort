@@ -1,0 +1,88 @@
+import java.io.*;
+import java.util.*;
+
+public class Solution 
+{
+    public static void swap(String[] array,int a,int b)
+    {
+        String temp=array[a];
+        array[a]=array[b];
+        array[b]=temp;
+    }
+    public static int quick(String[] arr, int low, int high) 
+    {
+        Random rand = new Random();
+        int pivotidx = rand.nextInt(high+1);
+        swap(arr,pivotidx,high);//swapping the pivot number to the end of the array to make it easier to swap
+        int i=(low-1); //start at low-1 because of the beginning of the array 
+        for(int j=low;j<high;j++)
+        {
+            if((Integer.parseInt(arr[j].split(" ",3)[2]))<=(Integer.parseInt(arr[high].split(" ",3)[2])))
+            {
+                if(Integer.parseInt(arr[j].split(" ",3)[2])==Integer.parseInt(arr[high].split(" ",3)[2]))
+                {
+                    if((arr[j].split(" ",3)[0]).compareToIgnoreCase(arr[high].split(" ",3)[0])<0)
+                    {
+                        i++;
+                        swap(arr,j,i);
+                    }
+                    else if((arr[j].split(" ",3)[0]).compareToIgnoreCase(arr[high].split(" ",3)[0])==0)
+                    {
+                        if((arr[j].split(" ",3)[1]).compareToIgnoreCase(arr[high].split(" ",3)[1])<0)
+                        {
+                            i++;
+                            swap(arr,j,i);
+                        }
+                    }
+                }
+                else
+                {
+                    i++;
+                    swap(arr,j,i);
+                }
+            }
+        }
+        swap(arr,i+1,high);
+        
+        for(int p=0;p<arr.length;p++) //printing each iteration
+        {
+            System.out.println(arr[p]);
+        }
+        System.out.println();
+        return i+1;
+    }
+    
+    public static void quickSort(String[] arr, int low, int high) //just like mergesort function
+    {
+        if (high > low) 
+        {
+            int pivotswitch = quick(arr,low,high);
+      
+            quickSort(arr, low, pivotswitch-1);//use left side of the original array 
+            quickSort(arr, pivotswitch+1, high);//use right side of the original array 
+        }
+    }
+
+    public static void main(String[] args) 
+    {
+        /* Enter your code here. Read input from STDIN. Print output to STDOUT. Your class should be named Solution. */
+        Scanner in = new Scanner(System.in);
+        String numberOf = in.nextLine();
+        int idx=0;
+        int number=Integer.parseInt(numberOf);
+        String[] arr = new String[number]; //array of numbers from input
+        while (idx<number)
+        {
+            String students = in.nextLine();
+            //System.out.println(students);
+            arr[idx]=students;
+            idx++;
+        }
+        if(arr.length==1)
+        {
+            System.out.println(arr[0]);
+        }
+        Solution Grad = new Solution(); 
+        Grad.quickSort(arr,0,arr.length-1); //go to function with index 0 as low and arr.length-1 as index for high
+    }
+}
