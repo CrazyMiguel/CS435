@@ -15,11 +15,11 @@ class InOrder
     }
 
     public Node root;
-
-	  public InOrder()
+    
+    public InOrder()
     {
-		    this.root = null; //Initialize a node root to null
-	  }
+    	this.root = null; //Initialize a node root to null
+    }
 
     public void insert(int data)
     {
@@ -60,9 +60,9 @@ class InOrder
     {
         if (root != null)
         {
-            sort(root.l_child);
+            sort(root.l_child); //recursive call to the left subtree to get smallest
             System.out.println(root.data);
-            sort(root.r_child);
+            sort(root.r_child); //recursive call to the right subtree after
         }
     }
 
