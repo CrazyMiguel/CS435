@@ -20,6 +20,7 @@ class BST_iterative
     {
       if(node==null) //check if there even is a root edge case
       {
+          //System.out.println(node.data);
           return (create(data));
       }
 
