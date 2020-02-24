@@ -15,10 +15,10 @@ class BST_iterative
 
     public Node root;
 
-	  public BST_iterative()
+    public BST_iterative()
     {
-		    this.root = null; //Initialize a node root to null
-	  }
+    	this.root = null; //Initialize a node root to null
+    }
 
     public void insert(int data)
     {
@@ -58,11 +58,11 @@ class BST_iterative
     public static void main(String[] args)
     {
       BST_iterative BST = new BST_iterative(); //intialize new Binary Search Tree
-      BST.insert(4);
-      BST.insert(2);
-      BST.insert(1);
-      BST.insert(3);
-      BST.insert(6);
-      BST.insert(5);
+      BST.insert(43);
+      BST.insert(13);
+      BST.insert(24);
+      BST.insert(80);
+      BST.insert(67);
+      BST.insert(34);
     }
 }
