@@ -9,7 +9,7 @@ class getRandomA
     int arraysize=0;
     while(arraysize<n)
     {
-      int r=rand.nextInt();
+      int r=rand.nextInt(n)+1;
       if(!arr.contains(r))
       {
         arr.add(r);
@@ -20,7 +20,7 @@ class getRandomA
   }
   public static void main(String[] Args)
   {
-    ArrayList<Integer> arr=getRandomArray(1000);
+    ArrayList<Integer> arr=getRandomArray(100);
     for(int i=0;i<arr.size();i++)
     {
       System.out.println(arr.get(i));
