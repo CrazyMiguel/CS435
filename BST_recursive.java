@@ -14,11 +14,10 @@ class BST_recursive
     }
 
     public Node root;
-
-	  public BST_recursive()
+    public BST_recursive()
     {
-		    this.root = null; //Initialize a node root to null
-	  }
+	this.root = null; //Initialize a node root to null
+    }
 
     public void insert(int data)
     {
@@ -32,6 +31,7 @@ class BST_recursive
         insertNode(root, node);
       }
     }
+	
     public void insertNode(Node curr,Node node)
     {
       //curr equals your parent, node is your node being inserted
