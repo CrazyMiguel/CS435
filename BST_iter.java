@@ -20,7 +20,7 @@ class BST_iter
 		    this.root = null; //Initialize a node root to null
 	  }
 
-    public void insert(int data)
+    public void insertIter(int data)
     {
       Node node=new Node(data);
       if(root==null) //check if there even is a root edge case
@@ -148,14 +148,14 @@ class BST_iter
     public static void main(String[] args)
     {
       BST_iter BST = new BST_iter(); //intialize new Binary Search Tree
-      BST.insert(43);
-      BST.insert(27);
-      BST.insert(31);
-      BST.insert(65);
-      BST.insert(46);
-      BST.insert(11);
-      BST.insert(96);
-      BST.insert(1);
+      BST.insertIter(43);
+      BST.insertIter(27);
+      BST.insertIter(31);
+      BST.insertIter(65);
+      BST.insertIter(46);
+      BST.insertIter(11);
+      BST.insertIter(96);
+      BST.insertIter(1);
       //BST.sort(BST.root);
       System.out.println(BST.findNextIter(43));
       System.out.println(BST.findPrevIter(43));
