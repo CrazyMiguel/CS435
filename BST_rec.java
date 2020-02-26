@@ -81,7 +81,7 @@ class BST_rec
     //return min value
     public int findMinRec(Node node)
     {
-      //go left left left until there is no more right
+      //go left left left until there is no more left
       if(node.l_child != null)
       {
         return findMinRec(node.l_child);
