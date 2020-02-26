@@ -22,7 +22,7 @@ class BST_rec
 	  }
 
     //check for the base case and take in inserts from driver
-    public void insert(int data)
+    public void insertrec(int data)
     {
       Node node=new Node(data);
       if(root==null) //Base case
@@ -155,17 +155,17 @@ class BST_rec
     public static void main(String[] args)
     {
       BST_rec BST = new BST_rec(); //intialize new Binary Search Tree
-      BST.insert(43);
-      BST.insert(27);
-      BST.insert(31);
-      BST.insert(65);
-      BST.insert(46);
-      BST.insert(11);
-      BST.insert(96);
-      BST.insert(1);
+      BST.insertrec(43);
+      BST.insertrec(27);
+      BST.insertrec(31);
+      BST.insertrec(65);
+      BST.insertrec(46);
+      BST.insertrec(11);
+      BST.insertrec(96);
+      BST.insertrec(1);
       //BST.sort(BST.root);
-      //System.out.println(BST.findNextRec(43));
-      //System.out.println(BST.findPrevRec(43));
+      System.out.println(BST.findNextRec(43));
+      System.out.println(BST.findPrevRec(43));
       //System.out.println(BST.findPrevRec(1));
       //System.out.println(BST.findNextRec(96));
       //System.out.println(BST.findMaxRec(BST.root));
