@@ -145,6 +145,128 @@ class BST_iter
       return curr;
     }
 
+    public Node findParent(int value)
+    {
+      Node prevParent=null;
+		  Node parent = null;
+      Node curr = root;
+      if(curr.data==value)
+      {
+        return curr;
+      }
+      while(curr.data!=value)
+      {
+        parent=curr;
+        if(value>curr.data)
+        {
+
+          curr=curr.r_child;
+        }
+        else if(value<curr.data)
+        {
+          curr=curr.l_child;
+        }
+      }
+      return parent;
+    }
+
+    public int deleteIter(int value)
+    {
+      if(root==null)
+      {
+        return -1;
+      }
+      Node node=find(value);
+      Node parent=findParent(value);
+      if(node.l_child==null && node.r_child==null) //no children
+      {
+        if(parent.l_child.data==node.data)
+        {
+          parent.l_child=null;
+        }
+        else if (parent.r_child.data==node.data)
+        {
+          parent.r_child=null;
+        }
+      }
+      else if(node.l_child==null)//right child of current node is now parents node
+      {
+        if(parent.l_child.data==node.data)
+        {
+          parent.l_child=node.r_child;
+        }
+        else if (parent.r_child.data==node.data)
+        {
+          parent.r_child=node.r_child;
+        }
+      }
+      else if(node.r_child==null) // left child of current node is now parents node
+      {
+        if(parent.l_child.data==node.data)
+        {
+          parent.l_child=node.l_child;
+        }
+        else if (parent.r_child.data==node.data)
+        {
+          parent.r_child=node.l_child;
+        }
+      }
+      else //has two children
+      {
+        if(parent.l_child.data==node.data)
+        {
+          int i=findNextIter(node.data);
+          int temp=i;
+          Node newplace=find(i);
+          newplace.data=node.data;
+          node.data=temp;
+          Node parent_Ofdeleted=findParent(findPrevIter(node.data)); //trying to find parent of node to be deleted
+          if(node.l_child==null)//right child of current node is now parents child node
+          {
+            if(parent_Ofdeleted.l_child.data==node.data)
+            {
+              parent_Ofdeleted.l_child=node.r_child;
+            }
+            else if (parent_Ofdeleted.r_child.data==node.data)
+            {
+              parent_Ofdeleted.r_child=node.r_child;
+            }
+          }
+          else //no child after the swap
+          {
+            parent_Ofdeleted.r_child=null;
+          }
+          return newplace.data;
+        }
+        else if (parent.r_child.data==node.data)
+        {
+          int i=findNextIter(node.data);
+          int temp=i;
+          Node newplace=find(i);
+          newplace.data=node.data;
+          node.data=temp;
+          Node parent_Ofdeleted=findParent(findPrevIter(node.data)); //trying to find parent of node to be deleted
+          if(node.l_child==null)//right child of current node is now parents child node
+          {
+            if(parent_Ofdeleted.l_child.data==node.data)
+            {
+              parent_Ofdeleted.l_child=node.r_child;
+            }
+            else if (parent_Ofdeleted.r_child.data==node.data)
+            {
+              parent_Ofdeleted.r_child=node.r_child;
+            }
+          }
+          else //no child after the swap
+          {
+            parent_Ofdeleted.r_child=null;
+          }
+          return newplace.data;
+        }
+      }
+      return node.data;
+    }
+
     public static void main(String[] args)
     {
       BST_iter BST = new BST_iter(); //intialize new Binary Search Tree
@@ -156,11 +278,14 @@ class BST_iter
       BST.insertIter(11);
       BST.insertIter(96);
       BST.insertIter(1);
-      //BST.sort(BST.root);
-      System.out.println(BST.findNextIter(43));
-      System.out.println(BST.findPrevIter(43));
-      System.out.println(BST.findPrevIter(1));
-      System.out.println(BST.findNextIter(96));
+      //BST.deleteIter(96);
+      //System.out.println(BST.deleteIter(65));
+      //System.out.println(BST.deleteIter(27));
+      BST.sort(BST.root);
+      //System.out.println(BST.findNextIter(43));
+      //System.out.println(BST.findPrevIter(43));
+      //System.out.println(BST.findPrevIter(1));
+      //System.out.println(BST.findNextIter(96));
       //System.out.println(BST.findMaxIter(BST.root));
       //System.out.println(BST.findMinIter(BST.root));
     }
