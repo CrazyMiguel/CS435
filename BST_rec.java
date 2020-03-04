@@ -55,7 +55,7 @@ class BST_rec
       //curr equals your parent, node is your node being inserted
       //check if the node being inserted is greater then parent node
       //if the right child doesnt exist insert this node as the parents right child
-      //else call again to go more left
+      //else call again to go more right
       else if(curr.data<node.data)
       {
           if(curr.r_child==null)
