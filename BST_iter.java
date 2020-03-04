@@ -281,7 +281,7 @@ class BST_iter
       //BST.deleteIter(96);
       //System.out.println(BST.deleteIter(65));
       //System.out.println(BST.deleteIter(27));
-      BST.sort(BST.root);
+      //BST.sort(BST.root);
       //System.out.println(BST.findNextIter(43));
       //System.out.println(BST.findPrevIter(43));
       //System.out.println(BST.findPrevIter(1));
