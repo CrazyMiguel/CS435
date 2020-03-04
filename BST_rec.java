@@ -31,11 +31,11 @@ class BST_rec
       }
       else
       {
-        insertNode(root, node);
+        insertrec(root, node);
       }
     }
     //recursively insert the actual node
-    public void insertNode(Node curr,Node node)
+    public void insertrec(Node curr,Node node)
     {
       //curr equals your parent, node is your node being inserted
       //check if the node being inserted is less then parent node
@@ -49,7 +49,7 @@ class BST_rec
         }
         else
         {
-          insertNode(curr.l_child,node);
+          insertrec(curr.l_child,node);
         }
       }
       //curr equals your parent, node is your node being inserted
@@ -64,7 +64,7 @@ class BST_rec
           }
           else
           {
-            insertNode(curr.r_child,node);
+            insertrec(curr.r_child,node);
           }
       }
     }
@@ -141,6 +141,15 @@ class BST_rec
         }
         return arr;
     }
+    //public int deleteRec(int value)
+    //{
+      //if(root==null)
+      //{
+        //return -1;
+      //}
+      //if(root.data<value)
+
+    //}
 
     void sort(Node root)
     {
