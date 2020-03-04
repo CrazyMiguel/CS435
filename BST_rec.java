@@ -104,7 +104,7 @@ class BST_rec
         }
         catch(Exception e)
         {
-          System.out.println("There is no Next Value");
+          return -1;
         }
       }
       return -1;
@@ -125,7 +125,7 @@ class BST_rec
         }
         catch(Exception e)
         {
-          System.out.println("There is no Prev Value");
+          return -1;
         }
       }
       return -1;
