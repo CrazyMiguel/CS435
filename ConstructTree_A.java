@@ -5,11 +5,11 @@ public class ConstructTree_A
   {
     BST_rec BSTr = new BST_rec();
     AVL_Iter AVL = new AVL_Iter();
-    ArrayList<Integer> arr =getRandomA.getRandomArray(30000);
+    ArrayList<Integer> arr =getRandomA.getRandomArray(10000);
     long startTimeBSTr = System.currentTimeMillis();
     for(int i=0;i<arr.size();i++)
     {
-      BSTr.insertrec(i);
+      BSTr.insertrec(arr.get(i));
     }
     long endTimeBSTr = System.currentTimeMillis();
     long timeBSTr =  ((endTimeBSTr-startTimeBSTr));
@@ -18,7 +18,7 @@ public class ConstructTree_A
     long startTimeAVL = System.currentTimeMillis();
     for(int j=0;j<arr.size();j++)
     {
-      AVL.insertIter(j);
+      AVL.insertIter(arr.get(j));
     }
     long endTimeAVL = System.currentTimeMillis();
     long timeAVL =  ((endTimeAVL- startTimeAVL));
