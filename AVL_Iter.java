@@ -30,6 +30,7 @@ class AVL_Iter
         root=node;
         update_bf(root);
         update_height(root);
+
         //System.out.println(root.bf);
         return;
       }
@@ -66,21 +67,35 @@ class AVL_Iter
           Node parents = find(data);
           update_bf(parents);
           update_height(parents);
-          int cases=check_bf(parents);
+          String cases=check_bf(parents);
           switch (cases)
           {
-            case 1:  System.out.println("1");
-                     //rotate left then rotate right
-                     break;
-            case 2:  System.out.println("2");
-                    //rotate right
-                     break;
-            case 3:  System.out.println("3");
-                    //rotate right then rotate left
-                     break;
-            case 4:  System.out.println("4");
-                    //rotate left
-                     break;
+            case "LeftRight":
+              //System.out.println("1");
+              //rotate left then rotate right
+              rotate_left(parents.l_child);
+              rotate_right(parents);
+              break;
+            case "LeftLeft":
+              //System.out.println("2");
+              //rotate right
+              rotate_right(parents);
+              //update_bf(parents.r_child);
+              //update_height(parents.r_child);
+              //update_bf(parents);
+              //update_height(parents);
+              break;
+            case "RightLeft":
+              //System.out.println("3");
+              //rotate right then rotate left
+              rotate_right(parents.r_child);
+              rotate_left(parents);
+              break;
+            case "RightRight":
+              //System.out.println("4");
+              //rotate left
+              rotate_left(parents);
+              break;
             default: break;
 
           }
@@ -368,39 +383,143 @@ class AVL_Iter
       }
     }
 
-    public static int check_bf(Node node)
+    public static String check_bf(Node node)
     {
       if(node.bf>1 && node.l_child.bf<0) //left right inbalance
       {
-        return 1;
+        return "LeftRight";
       }
       else if (node.bf>1) //left left inbalance
       {
-        return 2;
+        return "LeftLeft";
       }
       else if(node.bf<-1 && node.r_child.bf>0)//right left inbalance
       {
-        return 3;
+        return "RightLeft";
       }
       else if(node.bf<-1) //right right inbalance
       {
-        return 4;
+        return "RightRight";
       }
-      return 0;
+      return "None";
+    }
+    public void rotate_right(Node grandparent)
+    {
+      //parent goes into the position of grandparent
+      //child goes into the position of parent
+      //grandparent becomes right child of parent
+      //keep a variable to know if there is more tree above it
+      Node if_tree=findParent(grandparent.data);
+      Node parent=grandparent.l_child;
+      grandparent.l_child= parent.r_child; //disconnects grandparent from parent
+      parent.r_child=grandparent; //makes parents right child now grandparent
+      if(grandparent==if_tree)// basically means the original grandparent was the root
+      {
+        root=parent;
+      }
+      else if(grandparent==if_tree.r_child)
+      {
+        if_tree.r_child=parent;
+      }
+      else
+      {
+        if_tree.l_child=parent;
+      }
+      //System.out.println(parent.data);
+      //System.out.println(parent.r_child.data);
+      update_bf(grandparent);
+      update_height(grandparent);
+      update_bf(parent);
+      update_height(parent);
+      //System.out.println(parent.height);
+    }
+    public void rotate_left(Node grandparent)
+    {
+      //parent goes into the position of grandparent
+      //child goes into the position of parent
+      //grandparent becomes left child of parent
+      Node if_tree=findParent(grandparent.data);
+      Node parent=grandparent.r_child;
+      grandparent.r_child= parent.l_child; //disconnects grandparent from parent
+      parent.l_child=grandparent; //makes parents right child now grandparent
+      if(grandparent==if_tree)// basically means the original grandparent was the root
+      {
+        root=parent;
+      }
+      else if(grandparent==if_tree.r_child)
+      {
+        if_tree.r_child=parent;
+      }
+      else
+      {
+        if_tree.l_child=parent;
+      }
+      //System.out.println(parent.data);
+      //System.out.println(parent.r_child.data);
+      update_bf(grandparent);
+      update_height(grandparent);
+      update_bf(parent);
+      update_height(parent);
+
+    }
+    //level order traveral is not mine Sresht said to use this to check if the tree is RightLeft
+    //Again level order is not mine!!
+    void printLevelOrder()
+    {
+        int h = height(root);
+        int i;
+        for (i=1; i<=h; i++)
+            printGivenLevel(root, i);
     }
 
+    /* Compute the "height" of a tree -- the number of
+    nodes along the longest path from the root node
+    down to the farthest leaf node.*/
+    int height(Node root)
+    {
+        if (root == null)
+           return 0;
+        else
+        {
+            /* compute  height of each subtree */
+            int lheight = height(root.l_child);
+            int rheight = height(root.r_child);
+
+            /* use the larger one */
+            if (lheight > rheight)
+                return(lheight+1);
+            else return(rheight+1);
+        }
+    }
+
+    /* Print nodes at the given level */
+    void printGivenLevel (Node root ,int level)
+    {
+        if (root == null)
+            return;
+        if (level == 1)
+            System.out.print(root.data + " ");
+        else if (level > 1)
+        {
+            printGivenLevel(root.l_child, level-1);
+            printGivenLevel(root.r_child, level-1);
+        }
+    }
     public static void main(String[] args)
     {
       AVL_Iter AVL = new AVL_Iter(); //intialize new Binary Search Tree
       AVL.insertIter(43);
       AVL.insertIter(27);
+      //AVL.printLevelOrder();
+      //AVL.insertIter(24);
+      //AVL.printLevelOrder();
       AVL.insertIter(31);
-      AVL.insertIter(65);
       //AVL.insertIter(46);
       //after insert 46 there should be a left rotation
       //AVL.insertIter(11);
       //AVL.insertIter(96);
       //AVL.insertIter(1);
+      //AVL.printLevelOrder();
       //AVL.deleteIter(96);
       //System.out.println(AVL.deleteIter(65));
       //System.out.println(AVL.deleteIter(27));
