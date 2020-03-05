@@ -20,20 +20,22 @@ class BST_iter
 		    this.root = null; //Initialize a node root to null
 	  }
 
-    public void insertIter(int data)
+    public int insertIter(int data)
     {
       Node node=new Node(data);
       if(root==null) //check if there even is a root edge case
       {
         root=node;
-        return;
+        return 0;
       }
 
       Node parent = null;
       Node curr=root;
+      int levels_count=0;
       while(curr!=null) //until the end of the tree on that particular subtree
       {
         parent=curr;
+        levels_count+=1;
         if(curr.data>data)
         {
           curr=curr.l_child; //go left
@@ -52,7 +54,7 @@ class BST_iter
       {
         parent.r_child=node; // set this new node to the right child
       }
-      return;
+      return levels_count;
     }
     //return max value
     public int findMaxIter(Node node)
@@ -270,14 +272,16 @@ class BST_iter
     public static void main(String[] args)
     {
       BST_iter BST = new BST_iter(); //intialize new Binary Search Tree
-      BST.insertIter(43);
-      BST.insertIter(27);
-      BST.insertIter(31);
-      BST.insertIter(65);
-      BST.insertIter(46);
-      BST.insertIter(11);
-      BST.insertIter(96);
-      BST.insertIter(1);
+      //BST.insertIter(43);
+      //BST.insertIter(27);
+      //BST.insertIter(31);
+      //BST.insertIter(65);
+      //BST.insertIter(46);
+      //BST.insertIter(11);
+      //BST.insertIter(96);
+      System.out.println(BST.insertIter(2));
+      System.out.println(BST.insertIter(1));
+      System.out.println(BST.insertIter(3));
       //BST.deleteIter(96);
       //System.out.println(BST.deleteIter(65));
       //System.out.println(BST.deleteIter(27));
