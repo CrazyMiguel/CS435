@@ -22,7 +22,7 @@ class AVL_Iter
 		    this.root = null; //Initialize a node root to null
 	  }
 
-    public void insertIter(int data)
+    public int insertIter(int data)
     {
       Node node=new Node(data);
       if(root==null) //check if there even is a root edge case
@@ -32,15 +32,17 @@ class AVL_Iter
         update_height(root);
 
         //System.out.println(root.bf);
-        return;
+        return 0;
       }
 
       Node parent = null;
       Node curr=root;
       int count=0;
+      int levels_count=0;
       while(curr!=null) //until the end of the tree on that particular subtree
       {
         parent=curr;
+        levels_count+=1;
         if(curr.data>data)
         {
           curr=curr.l_child; //go left
@@ -104,7 +106,7 @@ class AVL_Iter
           count--;
           //break;
       }
-      return;
+      return levels_count;
     }
 
     //return max value
