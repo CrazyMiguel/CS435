@@ -30,7 +30,7 @@ class AVL_Iter
         root=node;
         update_bf(root);
         update_height(root);
-        System.out.println(root.bf);
+        //System.out.println(root.bf);
         return;
       }
 
@@ -61,17 +61,37 @@ class AVL_Iter
       }
       while(count>0)
       {
-          System.out.println(findParent(data).data);
-          data=findParent(data).data;
+          //System.out.println(findParent(data).data);
+          data=findParent(data).data; //This is done mainly becuase of calling for the grandparent
           Node parents = find(data);
           update_bf(parents);
           update_height(parents);
-          System.out.println(parents.bf);
+          int cases=check_bf(parents);
+          switch (cases)
+          {
+            case 1:  System.out.println("1");
+                     //rotate left then rotate right
+                     break;
+            case 2:  System.out.println("2");
+                    //rotate right
+                     break;
+            case 3:  System.out.println("3");
+                    //rotate right then rotate left
+                     break;
+            case 4:  System.out.println("4");
+                    //rotate left
+                     break;
+            default: break;
+
+          }
+          //System.out.println(parents.bf);
+          //System.out.println(cases);
           count--;
           //break;
       }
       return;
     }
+
     //return max value
     public int findMaxIter(Node node)
     {
@@ -285,27 +305,28 @@ class AVL_Iter
       return node.data;
     }
 
-    public void update_bf(Node node)
+    public void update_bf(Node node) //updates the balance factor of each node
     {
-      if (node.l_child == null && node.r_child == null)
+      //Sresht said maybe a good idea to not make balance factor a part of each node
+      if (node.l_child == null && node.r_child == null) //no children
       {
         node.bf=0;
       }
       else
       {
-        if(node.l_child == null)
+        if(node.l_child == null) //no left children in subtree
         {
           int l_height=-1;
           int r_height=node.r_child.height;
           node.bf=l_height-r_height;
         }
-        else if(node.r_child == null)
+        else if(node.r_child == null) // no right children in subtree
         {
           int l_height=node.l_child.height;
           int r_height=-1;
           node.bf=l_height-r_height;
         }
-        else
+        else //has children in both so take the heights of both subtrees
         {
           int l_height=node.l_child.height;
           int r_height=node.r_child.height;
@@ -313,25 +334,25 @@ class AVL_Iter
         }
       }
     }
-    public void update_height(Node node)
+    public void update_height(Node node) //update the heights after each insert
     {
-      if (node.l_child == null && node.r_child == null)
+      if (node.l_child == null && node.r_child == null) //no children
       {
         node.height=0;
       }
       else
       {
-        if(node.l_child == null)
+        if(node.l_child == null) // no left child sub tree
         {
           int r_height=node.r_child.height;
           node.height=r_height+1;
         }
-        else if(node.r_child == null)
+        else if(node.r_child == null) //no left child sub tree
         {
           int l_height=node.l_child.height;
           node.height=l_height+1;
         }
-        else
+        else //if there are both sub trees then check which is greater
         {
           int l_height=node.l_child.height;
           int r_height=node.r_child.height;
@@ -347,27 +368,48 @@ class AVL_Iter
       }
     }
 
+    public static int check_bf(Node node)
+    {
+      if(node.bf>1 && node.l_child.bf<0) //left right inbalance
+      {
+        return 1;
+      }
+      else if (node.bf>1) //left left inbalance
+      {
+        return 2;
+      }
+      else if(node.bf<-1 && node.r_child.bf>0)//right left inbalance
+      {
+        return 3;
+      }
+      else if(node.bf<-1) //right right inbalance
+      {
+        return 4;
+      }
+      return 0;
+    }
+
     public static void main(String[] args)
     {
-      AVL_Iter BST = new AVL_Iter(); //intialize new Binary Search Tree
-      BST.insertIter(43);
-      BST.insertIter(27);
-      BST.insertIter(31);
-      //BST.insertIter(65);
-      //BST.insertIter(46);
+      AVL_Iter AVL = new AVL_Iter(); //intialize new Binary Search Tree
+      AVL.insertIter(43);
+      AVL.insertIter(27);
+      AVL.insertIter(31);
+      AVL.insertIter(65);
+      //AVL.insertIter(46);
       //after insert 46 there should be a left rotation
-      //BST.insertIter(11);
-      //BST.insertIter(96);
-      //BST.insertIter(1);
-      //BST.deleteIter(96);
-      //System.out.println(BST.deleteIter(65));
-      //System.out.println(BST.deleteIter(27));
-      //BST.sort(BST.root);
-      //System.out.println(BST.findNextIter(43));
-      //System.out.println(BST.findPrevIter(43));
-      //System.out.println(BST.findPrevIter(1));
-      //System.out.println(BST.findNextIter(96));
-      //System.out.println(BST.findMaxIter(BST.root));
-      //System.out.println(BST.findMinIter(BST.root));
+      //AVL.insertIter(11);
+      //AVL.insertIter(96);
+      //AVL.insertIter(1);
+      //AVL.deleteIter(96);
+      //System.out.println(AVL.deleteIter(65));
+      //System.out.println(AVL.deleteIter(27));
+      //AVL.sort(AVL.root);
+      //System.out.println(AVL.findNextIter(43));
+      //System.out.println(AVL.findPrevIter(43));
+      //System.out.println(AVL.findPrevIter(1));
+      //System.out.println(AVL.findNextIter(96));
+      //System.out.println(AVL.findMaxIter(AVL.root));
+      //System.out.println(AVL.findMinIter(AVL.root));
     }
 }
