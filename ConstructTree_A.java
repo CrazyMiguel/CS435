@@ -13,7 +13,7 @@ public class ConstructTree_A
     }
     long endTimeBSTr = System.currentTimeMillis();
     long timeBSTr =  ((endTimeBSTr-startTimeBSTr));
-    System.out.println(timeBSTr + "ms");
+    System.out.println("BSTrec " + timeBSTr + "ms");
 
     long startTimeAVL = System.currentTimeMillis();
     for(int j=0;j<arr.size();j++)
@@ -22,6 +22,6 @@ public class ConstructTree_A
     }
     long endTimeAVL = System.currentTimeMillis();
     long timeAVL =  ((endTimeAVL- startTimeAVL));
-    System.out.println(timeAVL + "ms");
+    System.out.println("AVL " + timeAVL + "ms");
   }
 }
