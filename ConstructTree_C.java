@@ -9,16 +9,16 @@ public class ConstructTree_C
     long startTimeBSTr = System.currentTimeMillis();
     for(int i=0;i<arr.size();i++)
     {
-      BST.insertIter(i);
+      BST.insertIter(arr.get(i));
     }
     long endTimeBSTr = System.currentTimeMillis();
     long timeBSTr =  ((endTimeBSTr-startTimeBSTr));
     System.out.println(timeBSTr + "ms");
 
     long startTimeAVL = System.currentTimeMillis();
-    for(int i=0;i<arr.size();i++)
+    for(int j=0;j<arr.size();j++)
     {
-      AVL.insertIter(i);
+      AVL.insertIter(arr.get(j));
     }
     long endTimeAVL = System.currentTimeMillis();
     long timeAVL =  ((endTimeAVL- startTimeAVL));
