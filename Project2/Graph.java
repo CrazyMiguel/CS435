@@ -24,7 +24,7 @@ class Graph
   public void addUndirectedEdge(final Node first, final Node second)
   {
     //Bi-directional might have to check if the nodes actually exist
-    if(!(first.neighbors.contains(second)))
+    if(!(first.neighbors.contains(second) || second.neighbors.contains(first)))
     {
       first.neighbors.add(second);
       second.neighbors.add(first);
@@ -34,7 +34,7 @@ class Graph
   public void removeUndirectedEdge(final Node first, final Node second)
   {
     //Bi-directional remove might have to check if the nodes actually exist
-    if(first.neighbors.contains(second))
+    if(first.neighbors.contains(second) ||  second.neighbors.contains(first))
     {
       first.neighbors.remove(second);
       second.neighbors.remove(first);
@@ -55,7 +55,8 @@ class Graph
       Node curr=vertices.get(i);
       for(int j=0;j<curr.neighbors.size();j++)
       {
-        System.out.println(curr.neighbors.get(j).data);
+        System.out.println("Vertex " + curr.data);
+        System.out.println("Edge to " + curr.neighbors.get(j).data);
       }
       //System.out.println(curr.data);
     }
