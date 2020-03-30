@@ -1,5 +1,35 @@
+import java.util.*;
+
 class Main
 {
+  public static Graph createRandomUnweightedGraphIter(int n)
+  {
+    Graph randG = new Graph();
+    Random r=new Random();
+
+    //Assigning nodes
+    for (int i=0;i<n;i++)
+    {
+      randG.addNode(i);
+    }
+
+    //Assign random edges
+    for ( int j=0; j<n;j++)
+    {
+      int idx1=r.nextInt(n);
+      int idx2=r.nextInt(n);
+      if(idx1==idx2)
+      {
+        idx2=r.nextInt(n);
+      }
+      if(idx1!=idx2)
+      {
+        randG.addUndirectedEdge(randG.vertices.get(idx1), randG.vertices.get(idx2));
+      }
+    }
+    return randG;
+  }
+
   public static void main(String[] args)
   {
     Graph G = new Graph(); //intialize new Binary Search Tree
@@ -18,5 +48,7 @@ class Main
     //    	System.out.println(i);
     //}
     G.getAllNodes();
+    Graph randG = createRandomUnweightedGraphIter(5);
+    randG.print();
   }
 }
