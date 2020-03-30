@@ -2,6 +2,7 @@ import java.util.*;
 
 class Main
 {
+  //3b
   public static Graph createRandomUnweightedGraphIter(int n)
   {
     Graph randG = new Graph();
@@ -14,17 +15,15 @@ class Main
     }
 
     //Assign random edges
-    for ( int j=0; j<n;j++)
+    for (int j=0; j<n;j++)
     {
-      int idx1=r.nextInt(n);
-      int idx2=r.nextInt(n);
-      if(idx1==idx2)
+      for(int k=j+1; k<n;k++)
       {
-        idx2=r.nextInt(n);
-      }
-      if(idx1!=idx2)
-      {
-        randG.addUndirectedEdge(randG.vertices.get(idx1), randG.vertices.get(idx2));
+        int chance=r.nextInt(2);
+        if(chance==1)
+        {
+          randG.addUndirectedEdge(randG.vertices.get(j), randG.vertices.get(k));
+        }
       }
     }
     return randG;
