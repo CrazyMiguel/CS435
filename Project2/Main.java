@@ -15,9 +15,9 @@ class Main
     }
 
     //Assign random edges
-    for (int j=0; j<n;j++)
+    for (int j=0; j<randG.vertices.size();j++)
     {
-      for(int k=j+1; k<n;k++)
+      for(int k=j+1; k<randG.vertices.size();k++)
       {
         int chance=r.nextInt(2);
         if(chance==1)
@@ -28,26 +28,27 @@ class Main
     }
     return randG;
   }
+  //3c
+  public static Graph createLinkedList(int n)
+  {
+    Graph ListG = new Graph();
+    //Assigning nodes
+    for (int i=0;i<n;i++)
+    {
+      ListG.addNode(i);
+    }
+    for (int j=0;j<ListG.vertices.size()-1;j++)
+    {
+      ListG.addUndirectedEdge(ListG.vertices.get(j), ListG.vertices.get(j+1));
+    }
+    return ListG;
+  }
 
   public static void main(String[] args)
   {
-    Graph G = new Graph(); //intialize new Binary Search Tree
-    G.addNode(0);
-    G.addNode(1);
-    G.addNode(2);
-    G.addNode(3);
-    G.addNode(4);
-    G.addUndirectedEdge(G.vertices.get(0), G.vertices.get(1));
-    G.addUndirectedEdge(G.vertices.get(0), G.vertices.get(2));
-    G.addUndirectedEdge(G.vertices.get(1), G.vertices.get(2));
-    G.removeUndirectedEdge(G.vertices.get(0), G.vertices.get(1));
-    //G.print();
-    //for (Node i : G.getAllNodes())
-    //{
-    //    	System.out.println(i);
-    //}
-    G.getAllNodes();
+    Graph ListG = createLinkedList(5);
+    ListG.print();
     Graph randG = createRandomUnweightedGraphIter(5);
-    randG.print();
+    //randG.print();
   }
 }
