@@ -50,11 +50,22 @@ class Main
     //ListG.print();
     Graph randG = createRandomUnweightedGraphIter(5);
     randG.print();
-    GraphSearch DFS=new GraphSearch();
-    ArrayList<Node> complete= DFS.DFSRec(randG.vertices.get(1),randG.vertices.get(3));
-    for(int j=0;j<complete.size();j++)
+    //GraphSearch DFS=new GraphSearch();
+    //ArrayList<Node> DFSR= DFS.DFSRec(randG.vertices.get(1),randG.vertices.get(3));
+    //for(int j=0;j<DFSR.size();j++)
+    //{
+      //System.out.println(DFSR.get(j).data);
+    //}
+    //ArrayList<Node> DFSI= DFS.DFSIter(randG.vertices.get(1),randG.vertices.get(3));
+    //for(int j=0;j<DFSI.size();j++)
+    //{
+    //  System.out.println(DFSI.get(j).data);
+    //}
+    GraphSearch BFT=new GraphSearch();
+    ArrayList<Node> BFTR= BFT.BFTRec(randG);
+    for(int j=0;j<BFTR.size();j++)
     {
-      System.out.println(complete.get(j).data);
+      System.out.println(BFTR.get(j).data);
     }
   }
 }
