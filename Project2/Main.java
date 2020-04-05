@@ -62,10 +62,15 @@ class Main
     //  System.out.println(DFSI.get(j).data);
     //}
     GraphSearch BFT=new GraphSearch();
-    ArrayList<Node> BFTR= BFT.BFTRec(randG);
-    for(int j=0;j<BFTR.size();j++)
+    //ArrayList<Node> BFTR= BFT.BFTRec(randG);
+    //for(int j=0;j<BFTR.size();j++)
+    //{
+      //System.out.println(BFTR.get(j).data);
+    //}
+    ArrayList<Node> BFTI= BFT.BFTIter(randG);
+    for(int k=0;k<BFTI.size();k++)
     {
-      System.out.println(BFTR.get(j).data);
+      System.out.println(BFTI.get(k).data);
     }
   }
 }
