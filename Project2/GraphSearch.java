@@ -124,4 +124,27 @@ class GraphSearch
     }
     return arr;
   }
+
+  ArrayList<Node> BFTIter(final Graph graph)
+  {
+    ArrayList<Node> BFT_order= new ArrayList<Node>();
+    Queue<Node> queue = new LinkedList<>();
+    queue.add(graph.vertices.get(0));
+    while(!(queue.isEmpty()))
+    {
+      Node head = queue.poll();
+      head.visit = true;
+      for (Node neighbor : head.neighbors)
+      {
+        //check if the neighbor node was visited false if not
+        if(!(neighbor.visit))
+        {
+          neighbor.visit = true;
+          queue.add(neighbor);
+        }
+      }
+      BFT_order.add(head);
+    }
+    return BFT_order;
+  }
 }
