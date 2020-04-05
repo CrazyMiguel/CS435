@@ -47,8 +47,14 @@ class Main
   public static void main(String[] args)
   {
     Graph ListG = createLinkedList(5);
-    ListG.print();
+    //ListG.print();
     Graph randG = createRandomUnweightedGraphIter(5);
-    //randG.print();
+    randG.print();
+    GraphSearch DFS=new GraphSearch();
+    ArrayList<Node> complete= DFS.DFSRec(randG.vertices.get(1),randG.vertices.get(3));
+    for(int j=0;j<complete.size();j++)
+    {
+      System.out.println(complete.get(j).data);
+    }
   }
 }
