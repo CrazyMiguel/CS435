@@ -48,4 +48,31 @@ class GraphSearch
       return DFS_order;
     }
   }
+
+  //3e
+  ArrayList<Node> DFSIter(final Node start, final Node end)
+  {
+    //Stacks Stacks Stacks
+    ArrayList<Node> order= new ArrayList<Node>();
+    Stack<Node> stack=new Stack<Node>();
+    stack.push(start);
+    while(!(stack.empty()))
+    {
+      Node node=stack.pop();
+      node.visit=true;
+      order.add(node);
+      if(node==end)
+      {
+        return order;
+      }
+      for(int i=0;i<node.neighbors.size();i++)
+      {
+        if(!(node.neighbors.get(i).visit))//Actually means it is false
+        {
+          stack.push(node.neighbors.get(i));
+        }
+      }
+    }
+    return null;
+  }
 }
