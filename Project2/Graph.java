@@ -2,17 +2,6 @@ import java.util.*;
 
 class Graph
 {
-  static class Node //sets what a node is components
-  {
-    int data;
-    public ArrayList<Node> neighbors;
-    Node(int data) //the creation of an actual node
-    {
-      this.data=data;
-      this.neighbors = new ArrayList<>();
-    }
-  }
-
   ArrayList<Node> vertices=new ArrayList<>();
 
   public void addNode(final int val)
