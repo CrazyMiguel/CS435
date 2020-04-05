@@ -20,7 +20,7 @@ class GraphSearch
       //check if the neighbor node was visited false if not
       if(!(neighbor.visit))
       {
-        DFSRec(neighbor,end,arr);
+        DFSHelper(neighbor,end,arr);
       }
     }
     if(!(arr.contains(end)))
