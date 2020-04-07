@@ -27,18 +27,25 @@ class Main1
         {
           randG.addDirectedEdge(randG.vertices.get(k), randG.vertices.get(j));
         }
-        else if(chance==3)
-        {
-          randG.addDirectedEdge(randG.vertices.get(j), randG.vertices.get(k));
-          randG.addDirectedEdge(randG.vertices.get(k), randG.vertices.get(j));
-        }
+        //else if(chance==3)
+        //{
+          //randG.addDirectedEdge(randG.vertices.get(j), randG.vertices.get(k));
+          //randG.addDirectedEdge(randG.vertices.get(k), randG.vertices.get(j));
+        //}
       }
     }
     return randG;
   }
   public static void main(String[] args)
   {
-    DirectedGraph randG = createRandomDAGIter(5);
-    randG.print();
+    DirectedGraph randG = createRandomDAGIter(1000);
+    TopSort top=new TopSort();
+    ArrayList<Node> mDFS= top.mDFS(randG);
+    System.out.println("Top Sort");
+    for(int j=0;j<mDFS.size();j++)
+    {
+      System.out.println(mDFS.get(j).data);
+    }
+    //randG.print();
   }
 }
