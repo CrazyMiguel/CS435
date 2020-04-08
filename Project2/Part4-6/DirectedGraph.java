@@ -25,7 +25,6 @@ class DirectedGraph
     if(first.neighbors.contains(second))
     {
       first.neighbors.remove(second);
-      second.neighbors.remove(first);
     }
   }
 
