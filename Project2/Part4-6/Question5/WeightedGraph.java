@@ -21,9 +21,12 @@ class WeightedGraph
 
   public void removeWeightedEdge(final Node first, final Node second)
   {
-    if((first.neighbors.contains(second)))
+    for(int j=0;j<first.neighbors.size();j++)
     {
-      first.neighbors.remove(second);
+      if (second == first.neighbors.get(j).dest)
+      {
+        first.neighbors.remove(j);
+      }
     }
   }
 
@@ -42,7 +45,7 @@ class WeightedGraph
       for(int j=0;j<curr.neighbors.size();j++)
       {
         System.out.println("Vertex " + curr.data);
-        System.out.println(" -> " + curr.neighbors.get(j).data);
+        System.out.println(" -> " + curr.neighbors.get(j).dest.data);
       }
       //System.out.println(curr.data);
     }
