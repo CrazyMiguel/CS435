@@ -70,6 +70,8 @@ class GridGraph
       {
         System.out.println("Vertex " + curr.data);
         System.out.println("-> " + curr.neighbors.get(j).data);
+        System.out.println("start-loc: " + "(" + curr.x + "," + curr.y + ")");
+        System.out.println("final-loc: " + "(" + curr.neighbors.get(j).x + "," + curr.neighbors.get(j).y + ")");
         System.out.print("\n");
       }
       //System.out.println(curr.data);
