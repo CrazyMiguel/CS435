@@ -27,11 +27,32 @@ class Main2
     }
     return randG;
   }
+  //5d
+  public static WeightedGraph createLinkedList(final int n)
+  {
+    WeightedGraph ListG = new WeightedGraph();
+    int weight=1;
+    //Assigning nodes
+    for (int i=0;i<n;i++)
+    {
+      ListG.addNode(i);
+    }
+
+    for (int j=0;j<ListG.vertices.size()-1;j++)
+    {
+      ListG.addWeightedEdge(ListG.vertices.get(j), ListG.vertices.get(j+1), weight);
+    }
+    return ListG;
+  }
+
   public static void main(String[] args)
   {
+    //WeightedGraph graph=new WeightedGraph();
+    //WeightedGraph randG = createRandomCompleteWeightedGraph(5);
+    //randG.print();
     WeightedGraph graph=new WeightedGraph();
-    WeightedGraph randG = createRandomCompleteWeightedGraph(5);
-    randG.print();
+    WeightedGraph ListG = createLinkedList(5);
+    ListG.print();
     graph.addNode(0);
     graph.addNode(1);
     graph.addNode(2);
