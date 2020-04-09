@@ -29,12 +29,12 @@ class GridGraph
         first.neighbors.add(second);
         second.neighbors.add(first);
       }
-      else if(fx+1==sx && fy==sy) //move down one
+      else if(fx+1==sx && fy==sy) //move right one
       {
         first.neighbors.add(second);
         second.neighbors.add(first);
       }
-      else if(fx-1==sx && fy==sy) //move down one
+      else if(fx-1==sx && fy==sy) //move left one
       {
         first.neighbors.add(second);
         second.neighbors.add(first);
