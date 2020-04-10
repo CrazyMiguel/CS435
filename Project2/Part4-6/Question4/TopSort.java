@@ -4,7 +4,7 @@ class TopSort
 {
   ArrayList<Node> Kahns(final DirectedGraph graph)
   {
-    //HashMap<Node, Integer> inDegree = initializeInDegreeMap(graph);
+    HashMap<Node, Integer> inDegree = initializeInDegreeMap(graph);
     ArrayList<Node> topSort = new ArrayList<Node>();
     Queue<Node> queue = new LinkedList<>();
     //TODO Kahns
