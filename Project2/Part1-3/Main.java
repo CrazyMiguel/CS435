@@ -7,14 +7,12 @@ class Main
   {
     Graph randG = new Graph();
     Random r=new Random();
-
     //Assigning nodes
     for (int i=0;i<n;i++)
     {
       randG.addNode(i);
     }
-
-    //Assign random edges
+    //Assigning random edges
     for (int j=0; j<randG.vertices.size();j++)
     {
       for(int k=j+1; k<randG.vertices.size();k++)
