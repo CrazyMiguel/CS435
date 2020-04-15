@@ -5,10 +5,8 @@ class GraphSearch
   ArrayList<Node> DFSHelper(Node start, Node end, ArrayList<Node> arr)
   {
     //The start always moves to the next node and becomes the new start
-    //until the order array actually hit the end
     //mark visited and add the start node to array if its not end
     //now go to neighbors if not visited recurse
-    //start deleting if you reached the end of the depth so you go up to the next node
     start.visit=true;
     if(!(arr.contains(end)))
     {
@@ -154,6 +152,22 @@ class GraphSearch
       }
       BFT_order.add(head);
     }
-    return BFT_order;
+    //Make sure all nodes were checked
+    if(BFT_order.size()!=graph.vertices.size())
+    {
+      for(int i=0;i<graph.vertices.size();i++)
+      {
+        if(!(BFT_order.contains(graph.vertices.get(i))))
+        {
+          graph.vertices.get(i).visit=true;
+          BFT_order.add(graph.vertices.get(i));
+        }
+      }
+      return BFT_order;
+    }
+    else
+    {
+      return BFT_order;
+    }
   }
 }
