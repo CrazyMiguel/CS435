@@ -46,7 +46,7 @@ class GridGraph
   {
     for(int j=0;j<first.neighbors.size();j++)
     {
-      if(first.neighbors.contains(second) ||  second.neighbors.contains(first))
+      if(first.neighbors.contains(second) && second.neighbors.contains(first))
       {
         first.neighbors.remove(second);
         second.neighbors.remove(first);
