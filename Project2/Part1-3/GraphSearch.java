@@ -5,10 +5,8 @@ class GraphSearch
   ArrayList<Node> DFSHelper(Node start, Node end, ArrayList<Node> arr)
   {
     //The start always moves to the next node and becomes the new start
-    //until the order array actually hit the end
     //mark visited and add the start node to array if its not end
-    //now go to neighbors if not visited recurse
-    //start deleting if you reached the end of the depth so you go up to the next node
+    //now go to neighbors if not visited
     start.visit=true;
     if(!(arr.contains(end)))
     {
