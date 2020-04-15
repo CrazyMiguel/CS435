@@ -45,7 +45,6 @@ class DirectedGraph
         System.out.println("Vertex " + curr.data);
         System.out.println(" -> " + curr.neighbors.get(j).data);
       }
-      //System.out.println(curr.data);
     }
   }
 }
