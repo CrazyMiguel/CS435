@@ -44,33 +44,25 @@ class Main
     return ListG;
   }
 
+  public static ArrayList<Node> BFTRecLinkedList(final Graph graph)
+  {
+    GraphSearch BFTRec=new GraphSearch();
+    return BFTRec.BFTRec(graph);
+  }
+
+  public static ArrayList<Node> BFTIterLinkedList(final Graph graph)
+  {
+    GraphSearch BFTIter=new GraphSearch();
+    return BFTIter.BFTIter(graph);
+  }
+
   public static void main(String[] args)
   {
-    Graph ListG = createLinkedList(5);
-    //ListG.print();
-    Graph randG = createRandomUnweightedGraphIter(5);
-    randG.print();
-    //GraphSearch DFS=new GraphSearch();
-    //ArrayList<Node> DFSR= DFS.DFSRec(randG.vertices.get(1),randG.vertices.get(3));
-    //for(int j=0;j<DFSR.size();j++)
-    //{
-      //System.out.println(DFSR.get(j).data);
-    //}
-    //ArrayList<Node> DFSI= DFS.DFSIter(randG.vertices.get(1),randG.vertices.get(3));
-    //for(int j=0;j<DFSI.size();j++)
-    //{
-    //  System.out.println(DFSI.get(j).data);
-    //}
-    GraphSearch BFT=new GraphSearch();
-    //ArrayList<Node> BFTR= BFT.BFTRec(randG);
-    //for(int j=0;j<BFTR.size();j++)
-    //{
-      //System.out.println(BFTR.get(j).data);
-    //}
-    ArrayList<Node> BFTI= BFT.BFTIter(randG);
-    for(int k=0;k<BFTI.size();k++)
+    Graph ListG = createLinkedList(10000);
+    ArrayList<Node> BFTILinked= BFTIterLinkedList(ListG);
+    for(int i=0;i<BFTILinked.size();i++)
     {
-      System.out.println(BFTI.get(k).data);
+      System.out.println(BFTILinked.get(i).data);
     }
   }
 }
