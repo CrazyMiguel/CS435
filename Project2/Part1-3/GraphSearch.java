@@ -5,8 +5,10 @@ class GraphSearch
   ArrayList<Node> DFSHelper(Node start, Node end, ArrayList<Node> arr)
   {
     //The start always moves to the next node and becomes the new start
+    //until the order array actually hit the end
     //mark visited and add the start node to array if its not end
-    //now go to neighbors if not visited
+    //now go to neighbors if not visited recurse
+    //start deleting if you reached the end of the depth so you go up to the next node
     start.visit=true;
     if(!(arr.contains(end)))
     {
@@ -48,6 +50,7 @@ class GraphSearch
 
   ArrayList<Node> DFSIter(final Node start, final Node end)
   {
+    //Stacks Stacks Stacks
     ArrayList<Node> order= new ArrayList<Node>();
     Stack<Node> stack=new Stack<Node>();
     stack.push(start);
@@ -122,10 +125,10 @@ class GraphSearch
           queue.add(neighbor);
         }
       }
-      queue.poll();
+      Node curr=queue.poll();
       if(!(queue.isEmpty()))
       {
-        BFTHelper(queue,arr,queue.peek());
+        BFTHelper(queue,arr,curr);
       }
     }
     return arr;
