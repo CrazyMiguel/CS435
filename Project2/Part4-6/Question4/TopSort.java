@@ -23,6 +23,7 @@ class TopSort
         modifiedDfsHelper(graph.vertices.get(i),stack);
       }
     }
+    //From stack to arraylist
     while(!stack.empty())
     {
       order.add(stack.pop());
@@ -32,10 +33,10 @@ class TopSort
 
   void modifiedDfsHelper(final Node node, final Stack<Node> stack)
   {
-    // TODO set the node as visited
-    // TODO for all of the node's neighbors,
-    // TODO if the neighbor isn't visited, recursively call modifiedDfsHelper
-    // After calling modifiedDfsHelper on ALL neighbors, add the original node to the output stack.
+    // Make nodevisited
+    // Then go through all node's neighbors,
+    // if the neighbor isn't visited call this method again
+    // After all neighbors visited add the original node to the output stack.
     node.visit=true;
     for(int i=0;i<node.neighbors.size();i++)
     {
