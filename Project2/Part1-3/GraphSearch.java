@@ -2,7 +2,6 @@ import java.util.*;
 
 class GraphSearch
 {
-  //3d)
   ArrayList<Node> DFSHelper(Node start, Node end, ArrayList<Node> arr)
   {
     //The start always moves to the next node and becomes the new start
@@ -49,7 +48,6 @@ class GraphSearch
     }
   }
 
-  //3e
   ArrayList<Node> DFSIter(final Node start, final Node end)
   {
     //Stacks Stacks Stacks
@@ -76,7 +74,7 @@ class GraphSearch
     return null;
   }
 
-  //3f Breadth First Traversal
+  //Breadth First Traversal
   ArrayList<Node> BFTRec(final Graph graph)
   {
     ArrayList<Node> BFT_order= new ArrayList<Node>();
@@ -89,6 +87,17 @@ class GraphSearch
     if(BFT_order.size()==0)
     {
       return null;
+    }
+    else if(BFT_order.size()!=graph.vertices.size())
+    {
+      for(int i=0;i<graph.vertices.size();i++)
+      {
+        if(!(BFT_order.contains(graph.vertices.get(i))))
+        {
+          BFT_order.add(graph.vertices.get(i));
+        }
+      }
+      return BFT_order;
     }
     else
     {
