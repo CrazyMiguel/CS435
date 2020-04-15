@@ -1,6 +1,6 @@
 import java.util.*;
 
-class Node //sets what a node is components or vertex in this case
+class Node //sets a type Node which will be the vertex component to the graph
 {
   int data;
   boolean visit;
