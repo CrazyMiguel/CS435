@@ -24,10 +24,13 @@ class Main3
     {
       for(int k=0; k<randG.vertices.size();k++)
       {
-        int chance=r.nextInt(2);//50% chance of getting an edge
-        if(chance==0)
+        if(j!=k)
         {
-          randG.addUndirectedEdge(randG.vertices.get(j), randG.vertices.get(k));
+          int chance=r.nextInt(2);//50% chance of getting an edge
+          if(chance==0)
+          {
+            randG.addUndirectedEdge(randG.vertices.get(j), randG.vertices.get(k));
+          }
         }
       }
     }
