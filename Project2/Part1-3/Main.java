@@ -7,12 +7,14 @@ class Main
   {
     Graph randG = new Graph();
     Random r=new Random();
+
     //Assigning nodes
     for (int i=0;i<n;i++)
     {
       randG.addNode(i);
     }
-    //Assigning random edges
+
+    //Assign random edges
     for (int j=0; j<randG.vertices.size();j++)
     {
       for(int k=j+1; k<randG.vertices.size();k++)
@@ -30,13 +32,11 @@ class Main
   public static Graph createLinkedList(int n)
   {
     Graph ListG = new Graph();
-    //Assigning nodes
-    for (int i=0;i<n;i++)
+    //Assigning nodes and Edges
+    ListG.addNode(0);
+    for (int j=0;j<n-1;j++)
     {
-      ListG.addNode(i);
-    }
-    for (int j=0;j<ListG.vertices.size()-1;j++)
-    {
+      ListG.addNode(j+1);
       ListG.addUndirectedEdge(ListG.vertices.get(j), ListG.vertices.get(j+1));
     }
     return ListG;
@@ -56,11 +56,11 @@ class Main
 
   public static void main(String[] args)
   {
-    Graph ListG = createLinkedList(10000);
-    ArrayList<Node> BFTILinked= BFTIterLinkedList(ListG);
-    for(int i=0;i<BFTILinked.size();i++)
+    Graph ListG = createLinkedList(1000);
+    ArrayList<Node> BFTRLinked= BFTRecLinkedList(ListG);
+    for(int i=0;i<BFTRLinked.size();i++)
     {
-      System.out.println(BFTILinked.get(i).data);
+      System.out.println(BFTRLinked.get(i).data);
     }
   }
 }
