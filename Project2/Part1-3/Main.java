@@ -5,28 +5,28 @@ class Main
   //3b
   public static Graph createRandomUnweightedGraphIter(int n)
   {
-    Graph randG = new Graph();
+    Graph graph = new Graph();
     Random r=new Random();
 
     //Assigning nodes
     for (int i=0;i<n;i++)
     {
-      randG.addNode(i);
+      graph.addNode(i);
     }
 
-    //Assign random edges
-    for (int j=0; j<randG.vertices.size();j++)
+    //Assigning random edges
+    for (int j=0; j<graph.vertices.size();j++)
     {
-      for(int k=j+1; k<randG.vertices.size();k++)
+      for(int k=j+1; k<graph.vertices.size();k++)
       {
         int chance=r.nextInt(2);
         if(chance==1)
         {
-          randG.addUndirectedEdge(randG.vertices.get(j), randG.vertices.get(k));
+          graph.addUndirectedEdge(graph.vertices.get(j), graph.vertices.get(k));
         }
       }
     }
-    return randG;
+    return graph;
   }
   //3c
   public static Graph createLinkedList(int n)
